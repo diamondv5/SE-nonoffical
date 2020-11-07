@@ -17,7 +17,8 @@ app.get('/blog.html', function (req, res) {
         offset = (parseInt(req.query.page) - 1) * 5;
         activePage = req.query.page;
     }
-    var posts = db.get('blogs').sortBy("updatedAt").slice(offset, offset + 5).value();
+    db.read();
+    var posts = db.get('blogs').sortBy("updatedAt").reverse().slice(offset, offset + 5).value();
     var allPosts = db.get('blogs').value();
     var numPages = Math.ceil(allPosts.length / 5);
     var pages = [];
@@ -28,6 +29,7 @@ app.get('/blog.html', function (req, res) {
 });
 
 app.get('/blog-single.html', function (req, res) {
+    db.read();
     var post = db.get('blogs').find({ id: req.query.id }).value()
     res.render('blog-single', { "title": post.title });
 });
