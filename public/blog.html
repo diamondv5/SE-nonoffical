@@ -50,13 +50,13 @@
           <li><a href="services.html">Solutions</a></li>
           <li><a href="portfolio.html">Portfolio</a></li>
           <!-- <li><a href="team.html">Team</a></li> -->
-		  <li><a href="about.html">About Us</a></li>
+          <li><a href="about.html">About Us</a></li>
           <li class="active"><a href="blog.html">Tech Blog</a></li>
-		  <li class="drop-down"><a href="#">Profile</a>
-             <ul>
-                <li><a href="index.html">Personal Center</a></li>
-                <li><a href="login/Login.html">Sign out</a></li>
-              </ul>
+          <li class="drop-down"><a href="#">Profile</a>
+            <ul>
+              <li><a href="index.html">Personal Center</a></li>
+              <li><a href="login/Login.html">Sign out</a></li>
+            </ul>
           </li>
           <!-- <li><a href="contact.html">Contact Us</a></li> -->
         </ul>
@@ -100,7 +100,7 @@
               </div>
 
               <h2 class="entry-title">
-                <a href="blog/{{post.id}}.html">{{post.title}}</a>
+                <a href="blog-single.html?id={{post.id}}">{{post.title}}</a>
               </h2>
 
               <div class="entry-meta">
@@ -108,8 +108,9 @@
                   <li class="d-flex align-items-center"><i class="icofont-user"></i> <a href="blog-single.html">Kevin
                       Zhao</a></li>
                   <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <a
-                      href="blog-single.html"><time datetime="2020-01-01">Oct 21, 2020</time></a></li>
-                  <li class="d-flex align-items-center"><i class="icofont-comment"></i> <a href="blog-single.html">12
+                      href="blog-single.html?id={{post.id}}"><time datetime="2020-01-01">Oct 21, 2020</time></a></li>
+                  <li class="d-flex align-items-center"><i class="icofont-comment"></i> <a
+                      href="blog-single.html?id={{post.id}}">12
                       Comments</a></li>
                 </ul>
               </div>
@@ -119,7 +120,7 @@
                   {{post.content}}
                 </p> -->
                 <div class="read-more">
-                  <a href="blog/{{post.id}}.html">Read More</a>
+                  <a href="blog-single.html?id={{post.id}}">Read More</a>
                 </div>
               </div>
 
@@ -130,10 +131,14 @@
             <div class="blog-pagination">
               <ul class="justify-content-center">
                 <li class="disabled"><i class="icofont-rounded-left"></i></li>
-                <li><a href="#">1</a></li>
-                <li class="active"><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#"><i class="icofont-rounded-right"></i></a></li>
+                {{@each(it.pages) => page}}
+                {{@if(it.activePage === page)}}
+                <li class="active"><a href="blog.html?page={{page}}">{{page}}</a></li>
+                {{#else}}
+                <li><a href="blog.html?page={{page}}">{{page}}</a></li>
+                {{/if}}
+
+                {{/each}}
               </ul>
             </div>
 
@@ -206,8 +211,9 @@
 
           <div class="col-lg-3 col-md-6 footer-info">
             <h3>About CTGSolution</h3>
-            <p>China Telecommunications Corporation is an extra-large state-owned telecommunications enterprise in China, 
-			with a total registered capital of RMB213.1 billion.</p>
+            <p>China Telecommunications Corporation is an extra-large state-owned telecommunications enterprise in
+              China,
+              with a total registered capital of RMB213.1 billion.</p>
             <div class="social-links mt-3">
               <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
               <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
