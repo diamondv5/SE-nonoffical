@@ -1,0 +1,14 @@
+{
+  "name": "se-nonoffical",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express.js": "^1.0.0",
+    "lowdb": "^1.0.0",
+    "squirrelly": "^8.0.8",
+    "uuid": "^8.3.1"
+  }
+}
